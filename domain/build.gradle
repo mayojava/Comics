@@ -1,0 +1,19 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def appDependencies = rootProject.ext.appDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    api appDependencies.options
+    api appDependencies.rxJava2
+
+    compileOnly appDependencies.javaxAnnotation
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.assertj
+    testImplementation testDependencies.mockito
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
