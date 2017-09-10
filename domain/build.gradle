@@ -1,4 +1,7 @@
 apply plugin: 'java-library'
+configurations {
+    provided
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -8,6 +11,17 @@ dependencies {
 
     api appDependencies.options
     api appDependencies.rxJava2
+
+    api appDependencies.gson
+
+    compileOnly appDependencies.autoValue
+    provided appDependencies.autoValue
+
+    compileOnly appDependencies.autoValueGson
+    provided appDependencies.autoValueGson
+
+    implementation appDependencies.dagger2
+    provided appDependencies.dagger2Compiler
 
     compileOnly appDependencies.javaxAnnotation
     testImplementation testDependencies.junit

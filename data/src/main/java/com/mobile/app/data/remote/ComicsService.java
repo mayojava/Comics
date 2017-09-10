@@ -6,7 +6,7 @@ import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface MoviesService {
+public interface ComicsService {
     String API_KEY = "apikey";
     String HASH = "hash";
     String TIMESTAMP = "ts";

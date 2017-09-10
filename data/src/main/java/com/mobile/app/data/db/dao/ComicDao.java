@@ -14,7 +14,7 @@ import io.reactivex.Flowable;
 @Dao
 public interface ComicDao {
     @Query("SELECT * FROM comic")
-    Flowable<ComicsEntity> getAllComics();
+    Flowable<List<ComicsEntity>> getAllComics();
 
     @Query("DELETE FROM comic")
     void deleteAll();
