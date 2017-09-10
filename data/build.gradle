@@ -43,4 +43,9 @@ dependencies {
     api appDependencies.retrofit2
     api appDependencies.retrofitRxAdapter
     api appDependencies.retrofitConverter
+
+    api appDependencies.roomRuntime
+    implementation appDependencies.roomRxJava
+
+    annotationProcessor appDependencies.roomCompiler
 }
