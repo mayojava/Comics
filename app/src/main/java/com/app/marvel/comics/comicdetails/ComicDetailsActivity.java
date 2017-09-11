@@ -5,6 +5,12 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatCallback;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.view.ActionMode;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,13 +18,11 @@ import com.app.marvel.comics.R;
 import com.app.marvel.comics.domain.entity.Comic;
 import com.squareup.picasso.Picasso;
 
-import java.util.Locale;
-
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 
-public class ComicDetailsActivity extends LifecycleActivity {
+public class ComicDetailsActivity extends LifecycleActivity implements AppCompatCallback {
     @Inject ViewModelProvider.Factory viewModelFactory;
 
     private ImageView image;
@@ -28,16 +32,33 @@ public class ComicDetailsActivity extends LifecycleActivity {
     private TextView price;
     private TextView authors;
 
+    private AppCompatDelegate delegate;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+
+        delegate = AppCompatDelegate.create(this, this);
+        delegate.onCreate(savedInstanceState);
+        delegate.setContentView(R.layout.activity_details);
+
+        setupToolbar();
         setupView();
 
         final ComicDetailsViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(ComicDetailsViewModel.class);
         viewModel.getSelectedComic().observe(this, this::bindToViews);
+    }
+
+    private void setupToolbar() {
+        toolbar = findViewById(R.id.toolbar);
+        delegate.setSupportActionBar(toolbar);
+        final ActionBar actionBar = delegate.getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private void setupView() {
@@ -58,5 +79,27 @@ public class ComicDetailsActivity extends LifecycleActivity {
         Picasso.with(this)
                 .load(comic.thumbnail())
                 .into(image);
+        toolbar.setTitle(comic.title());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSupportActionModeStarted(ActionMode mode) {}
+
+    @Override
+    public void onSupportActionModeFinished(ActionMode mode) {}
+
+    @Nullable
+    @Override
+    public ActionMode onWindowStartingSupportActionMode(ActionMode.Callback callback) {
+        return null;
     }
 }

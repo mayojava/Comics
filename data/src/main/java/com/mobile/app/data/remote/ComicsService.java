@@ -11,7 +11,7 @@ public interface ComicsService {
     String HASH = "hash";
     String TIMESTAMP = "ts";
 
-    @GET("v1/public/comics")
+    @GET("v1/public/comics?limit=100")
     Single<ApiResponse> getComics(
             @Query(API_KEY) String publicKey,
             @Query(HASH) String hash,
