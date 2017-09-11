@@ -52,6 +52,9 @@ dependencies {
     implementation appDependencies.picasso
 
     implementation appDependencies.dagger2
+    implementation appDependencies.daggerSupport
+
+    annotationProcessor appDependencies.daggerProcessor
     annotationProcessor appDependencies.dagger2Compiler
     testAnnotationProcessor appDependencies.dagger2Compiler
     compileOnly appDependencies.javaxAnnotation
@@ -62,4 +65,30 @@ dependencies {
     testImplementation testDependencies.junit
     testImplementation testDependencies.assertj
     testImplementation testDependencies.mockito
+
+    androidTestImplementation testDependencies.junit
+    androidTestImplementation testDependencies.mockito
+    androidTestImplementation testDependencies.dexmakerMockito
+    androidTestImplementation (testDependencies.espressoCore) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation (testDependencies.androidRunner) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation (testDependencies.androidRules) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation (testDependencies.espressoIntents) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation (testDependencies.espressoContrib) {
+        exclude module: 'appcompat'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+        exclude module: 'support-v13'
+        exclude module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'design'
+        exclude module: 'cardview-v7'
+    }
 }

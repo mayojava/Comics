@@ -15,7 +15,7 @@ import javax.inject.Inject;
 public class Mapper {
     @Inject public Mapper() {}
 
-    public List<Comic> mapToDomainComidModel(final List<ComicsEntity> entities) {
+    public List<Comic> mapToDomainComicModel(final List<ComicsEntity> entities) {
         final List<Comic> result = new ArrayList<>();
 
         for (ComicsEntity entity: entities) {

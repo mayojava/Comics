@@ -55,4 +55,9 @@ dependencies {
 
     compileOnly appDependencies.autoValueGson
     annotationProcessor appDependencies.autoValueGson
+
+    // Unit testing
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.assertj
+    testImplementation testDependencies.mockito
 }

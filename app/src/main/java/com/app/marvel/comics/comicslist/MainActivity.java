@@ -1,7 +1,9 @@
-package com.app.marvel.comics;
+package com.app.marvel.comics.comicslist;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.app.marvel.comics.R;
 
 public class MainActivity extends AppCompatActivity {
 

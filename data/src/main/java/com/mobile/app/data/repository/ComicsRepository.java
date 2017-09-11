@@ -61,7 +61,7 @@ public class ComicsRepository implements IComicsRepository {
                     if (optional.isNone() || OptionUnsafe.getUnsafe(optional).isEmpty()) {
                         return Collections.emptyList();
                     } else {
-                        return mapper.mapToDomainComidModel(OptionUnsafe.getUnsafe(optional));
+                        return mapper.mapToDomainComicModel(OptionUnsafe.getUnsafe(optional));
                     }
                 });
     }
