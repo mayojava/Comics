@@ -57,6 +57,7 @@ public class ComicsRepository implements IComicsRepository {
     @Override
     public Flowable<List<Comic>> getAllComics() {
         return reactiveStore.getAll()
+                .subscribeOn(schedulersFactory.computation())
                 .map(optional -> {
                     if (optional.isNone() || OptionUnsafe.getUnsafe(optional).isEmpty()) {
                         return Collections.emptyList();

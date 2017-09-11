@@ -9,6 +9,8 @@ import com.app.marvel.comics.injection.modules.BuildersModule;
 import com.app.marvel.comics.injection.modules.DatabaseModule;
 import com.app.marvel.comics.injection.modules.NetworkModule;
 
+import javax.inject.Singleton;
+
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.support.AndroidSupportInjectionModule;
@@ -21,6 +23,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         NetworkModule.class,
         ApiModule.class
 })
+@Singleton
 public interface AppComponent {
     @Component.Builder
     interface Builder {

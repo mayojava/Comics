@@ -10,6 +10,11 @@ import dagger.Provides;
 
 @Module
 public class ComicsListActivityModule {
+    @Provides
+    @PerActivity
+    public ComicsRecyclerAdapter providesRecyclerAdapter(final ComicsListActivity comicsListActivity) {
+        return new ComicsRecyclerAdapter(comicsListActivity);
+    }
 
     @Provides
     @PerActivity

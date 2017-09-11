@@ -48,6 +48,10 @@ public class ComicsRecyclerAdapter extends RecyclerView.Adapter<ComicsRecyclerAd
         notifyDataSetChanged();
     }
 
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
     static class ComicsViewHolder extends RecyclerView.ViewHolder {
         private final TextView title;
         private final ImageView comicImage;

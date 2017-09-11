@@ -41,7 +41,7 @@ public class ComicsListViewModel extends ViewModel {
     }
 
     @Nonnull
-    public LiveData<List<Comic>> getComicsLiveData() {
+    LiveData<List<Comic>> getComicsLiveData() {
         return comicsLiveData;
     }
 
