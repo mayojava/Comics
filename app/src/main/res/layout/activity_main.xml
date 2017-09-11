@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_grey"
-    tools:context="com.app.marvel.comics.comicslist.MainActivity">
+    tools:context="com.app.marvel.comics.comicslist.ComicsListActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_movies"
@@ -17,4 +17,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
+    <ProgressBar
+        android:id="@+id/progress_bar_indefinite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 </android.support.constraint.ConstraintLayout>

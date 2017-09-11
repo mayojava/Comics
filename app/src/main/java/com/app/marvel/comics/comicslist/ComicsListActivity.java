@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.app.marvel.comics.R;
 
-public class MainActivity extends AppCompatActivity {
+public class ComicsListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
