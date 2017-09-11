@@ -16,28 +16,24 @@ import polanski.option.Option;
 import static io.reactivex.Single.just;
 
 public class FetchComicsInteractor implements
-        ReactiveInteractor.RetrieveInteractor<Option<Void>,List<Comic>> {
+        ReactiveInteractor.RetrieveInteractor<Option<Void>,List<Comic>>,
+        ReactiveInteractor.RefreshInteractor {
 
     @NonNull private final IComicsRepository comicsRepository;
 
     @Inject
-    public FetchComicsInteractor(@NonNull final IComicsRepository comicsRepository) {
+    FetchComicsInteractor(@NonNull final IComicsRepository comicsRepository) {
         this.comicsRepository = comicsRepository;
     }
 
     @Override
     public Flowable<List<Comic>> getResponseStream(Option<Option<Void>> params) {
-        return comicsRepository.getAllComics()
-                //.flatMapSingle(list -> Single.just(list).doOnSuccess(this::fetchIfEmpty));
-                .flatMapSingle(list -> fetchIfEmpty(list).andThen(just(list)));
+        return comicsRepository.getAllComics();
+
     }
 
-    @NonNull
-    private Completable fetchIfEmpty(@NonNull final List<Comic> comics) {
-        return comics.isEmpty()
-                ? comicsRepository.fetchComics()
-                : Completable.complete();
-        //return comicsRepository.fetchComics();
+    @Override
+    public Completable refreshData() {
+        return comicsRepository.fetchComics();
     }
-
 }

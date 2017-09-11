@@ -1,5 +1,6 @@
 package com.app.marvel.comics.domain.interactor;
 
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
@@ -31,5 +32,12 @@ public interface ReactiveInteractor {
     interface RequestInteractor<Params, Result> extends ReactiveInteractor {
         @NonNull
         Single<Result> makeRequest(@NonNull final Option<Params> params);
+    }
+
+    /**
+     * Used to refresh data stored in persistence
+     */
+    interface RefreshInteractor extends ReactiveInteractor {
+        Completable refreshData();
     }
 }

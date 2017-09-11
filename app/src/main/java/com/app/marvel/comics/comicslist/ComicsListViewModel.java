@@ -20,6 +20,7 @@ import io.reactivex.disposables.Disposable;
 import polanski.option.Option;
 
 public class ComicsListViewModel extends ViewModel {
+    private static final String TAG = ComicsListViewModel.class.getSimpleName();
 
     @Nonnull private final FetchComicsInteractor interactor;
     @Nonnull private final ISchedulersFactory schedulersFactory;
@@ -29,13 +30,21 @@ public class ComicsListViewModel extends ViewModel {
     private final MutableLiveData<List<Comic>> comicsLiveData = new MutableLiveData<>();
 
     @Inject
-    public ComicsListViewModel(@Nonnull final FetchComicsInteractor interactor,
-                               @Nonnull final ISchedulersFactory schedulersFactory,
-                               @Nonnull final ISelectedComicRepository selectedComicRepository) {
+    ComicsListViewModel(@Nonnull final FetchComicsInteractor interactor,
+                        @Nonnull final ISchedulersFactory schedulersFactory,
+                        @Nonnull final ISelectedComicRepository selectedComicRepository) {
         this.interactor = interactor;
         this.schedulersFactory = schedulersFactory;
         this.selectedComicRepository = selectedComicRepository;
         disposable.add(bindToComicsStream());
+        refreshData();
+    }
+
+    private void refreshData() {
+        disposable.add(interactor.refreshData()
+                .subscribeOn(schedulersFactory.io())
+                .observeOn(schedulersFactory.main())
+                .subscribe(() -> {}, error -> Log.e(TAG, "Could not update data", error)));
     }
 
     @Override
@@ -57,6 +66,6 @@ public class ComicsListViewModel extends ViewModel {
     private Disposable bindToComicsStream() {
         return interactor.getResponseStream(Option.none())
                 .observeOn(schedulersFactory.main())
-                .subscribe(comicsLiveData::postValue, error -> Log.e(ComicsListViewModel.class.getSimpleName(), "Error getting comics: ",  error));
+                .subscribe(comicsLiveData::postValue, error -> Log.e(TAG, "Error getting comics: ",  error));
     }
 }
