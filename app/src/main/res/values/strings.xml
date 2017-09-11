@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Comics</string>
+    <string name="comic_title">Title</string>
+    <string name="label_comic_description">Description</string>
+    <string name="label_page_count">Page count</string>
+    <string name="label_price">Print Price</string>
+    <string name="label_authors">Authors</string>
 </resources>

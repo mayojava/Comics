@@ -12,14 +12,14 @@ import dagger.Provides;
 public class ComicsListActivityModule {
     @Provides
     @PerActivity
-    public ComicsRecyclerAdapter providesRecyclerAdapter(final ComicsListActivity comicsListActivity) {
+    ComicsRecyclerAdapter providesRecyclerAdapter(final ComicsListActivity comicsListActivity) {
         return new ComicsRecyclerAdapter(comicsListActivity);
     }
 
     @Provides
     @PerActivity
-    public ViewModelProvider.Factory providesComicsViewModel(final ViewModelUtil viewModelUtil,
-                                                             final ComicsListViewModel comicsListViewModel) {
+    ViewModelProvider.Factory providesComicsViewModel(final ViewModelUtil viewModelUtil,
+                                                      final ComicsListViewModel comicsListViewModel) {
         return viewModelUtil.createViewModelFor(comicsListViewModel);
     }
 }

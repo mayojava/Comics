@@ -45,7 +45,7 @@ public class Mapper {
             final List<CreatorSummary> creators = creatorList.getItems();
 
             for (int i = 0; i < creators.size(); i++) {
-                stringBuilder.append(creators.get(i));
+                stringBuilder.append(creators.get(i).getName());
 
                 if (i != creators.size() - 1) {
                     stringBuilder.append(", ");

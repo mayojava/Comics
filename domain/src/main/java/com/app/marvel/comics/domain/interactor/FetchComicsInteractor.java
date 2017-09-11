@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
 import polanski.option.Option;
 
@@ -27,6 +28,7 @@ public class FetchComicsInteractor implements
     @Override
     public Flowable<List<Comic>> getResponseStream(Option<Option<Void>> params) {
         return comicsRepository.getAllComics()
+                //.flatMapSingle(list -> Single.just(list).doOnSuccess(this::fetchIfEmpty));
                 .flatMapSingle(list -> fetchIfEmpty(list).andThen(just(list)));
     }
 
@@ -35,6 +37,7 @@ public class FetchComicsInteractor implements
         return comics.isEmpty()
                 ? comicsRepository.fetchComics()
                 : Completable.complete();
+        //return comicsRepository.fetchComics();
     }
 
 }
