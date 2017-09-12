@@ -8,13 +8,13 @@ RxJava and Room.
 
 The application is divided into 3 different layers:
 
-* *App layer*: This is the presentation layer that contains the view and view models. `ViewModels` are used to
+* __App layer__: This is the presentation layer that contains the view and view models. `ViewModels` are used to
 interact with the interactors that fetches and subscribes to data from the repository.
 
-* *Domain Layer*: This contains the interactors for the application use cases. It also exposes interface that are used for
+* __Domain Layer__: This contains the interactors for the application use cases. It also exposes interface that are used for
 communication with the data layer. No android framework dependencies exists in this layer.
 
-* Data layer: This layer contains both the reactive local store and a service to make remote api calls. It implements
+* __Data layer__: This layer contains both the reactive local store and a service to make remote api calls. It implements
 interfaces from the domain layer to perform interactors use cases.
 
  # Libraries used
