@@ -65,6 +65,7 @@ dependencies {
     testImplementation testDependencies.junit
     testImplementation testDependencies.assertj
     testImplementation testDependencies.mockito
+    testCompile testDependencies.archTest
 
     androidTestImplementation testDependencies.junit
     androidTestImplementation testDependencies.mockito

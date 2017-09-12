@@ -29,7 +29,6 @@ public class FetchComicsInteractor implements
     @Override
     public Flowable<List<Comic>> getResponseStream(Option<Option<Void>> params) {
         return comicsRepository.getAllComics();
-
     }
 
     @Override

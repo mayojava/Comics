@@ -15,7 +15,7 @@ public class ComicDetailsViewModel extends ViewModel {
     private final MutableLiveData<Comic> selectedComicLiveData = new MutableLiveData<>();
 
     @Inject
-    public ComicDetailsViewModel(@Nonnull final ISelectedComicRepository selectedComicRepository) {
+    ComicDetailsViewModel(@Nonnull final ISelectedComicRepository selectedComicRepository) {
         selectedComicLiveData.postValue(selectedComicRepository.getSelectedComic());
     }
 

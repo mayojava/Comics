@@ -28,10 +28,10 @@ public class ComicsRepository implements IComicsRepository {
     private final ISchedulersFactory schedulersFactory;
 
     @Inject
-    public ComicsRepository(@NonNull final ReactiveStore<ComicsEntity> reactiveStore,
-                            @NonNull final ComicsService comicsService,
-                            @NonNull final ISchedulersFactory schedulersFactory,
-                            @NonNull final Mapper mapper) {
+    ComicsRepository(@NonNull final ReactiveStore<ComicsEntity> reactiveStore,
+                     @NonNull final ComicsService comicsService,
+                     @NonNull final ISchedulersFactory schedulersFactory,
+                     @NonNull final Mapper mapper) {
         this.reactiveStore = reactiveStore;
         this.comicsService = comicsService;
         this.mapper = mapper;
